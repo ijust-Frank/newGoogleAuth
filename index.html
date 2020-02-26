@@ -66,6 +66,7 @@ const config = {
   signOut.on("click", e => {
       e.preventDefault();
       auth.signOut();
+      $("#pic-here").attr("src", "");
   })
 
   $("#google-sign-in").on("click", function (){
@@ -79,7 +80,7 @@ const config = {
       } else {
           console.log("not logged in");
           signOut.hide()
-          $("#pic-here").attr("src", "")
+          
       }
    })
   </script>
