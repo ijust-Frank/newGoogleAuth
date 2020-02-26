@@ -52,8 +52,8 @@ const config = {
       base_provider = new firebase.auth.GoogleAuthProvider()
 
       auth.signInWithPopup(base_provider).then(function (result) {
-          console.log(result)
           pic = result.user.photoURL
+          $("#pic-here").attr("src" , pic)
           console.log("We made it happen")
       }).catch(function(err){
           console.log(err)
@@ -76,7 +76,6 @@ const config = {
       if(firebaseUser) {
           console.log(firebaseUser);
           signOut.show();
-          $("#pic-here").attr("src" , pic);
       } else {
           console.log("not logged in");
           signOut.hide()
