@@ -13,6 +13,11 @@
 
         <button id="sign-out" type="submit">Log Out</button>
 
+        <div>
+            <h1>Welcome</h1>
+            <h2 id="pic-here"></h2>
+        </div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
         <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
@@ -41,12 +46,14 @@ const config = {
 
   const signOut = $("#sign-out")
 
+  const pic;
 
   let googleSignIn = () => {
       base_provider = new firebase.auth.GoogleAuthProvider()
 
       auth.signInWithPopup(base_provider).then(function (result) {
           console.log(result)
+          pic = result.user.photoURLs
           console.log("We made it happen")
       }).catch(function(err){
           console.log(err)
@@ -63,6 +70,7 @@ const config = {
       if(firebaseUser) {
           console.log(firebaseUser);
           signOut.show();
+          $("#pic-here").html(pic)
       } else {
           console.log("not logged in");
           signOut.hide()
