@@ -53,7 +53,7 @@ const config = {
 
       auth.signInWithPopup(base_provider).then(function (result) {
           console.log(result)
-          pic = result.user.photoURLs
+          pic = result.user.photoURL
           console.log("We made it happen")
       }).catch(function(err){
           console.log(err)
@@ -76,7 +76,7 @@ const config = {
       if(firebaseUser) {
           console.log(firebaseUser);
           signOut.show();
-          $("#pic-here"[src|=pic])
+          $("#pic-here").attr("src" , pic);
       } else {
           console.log("not logged in");
           signOut.hide()
