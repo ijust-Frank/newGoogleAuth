@@ -11,6 +11,8 @@
     <body>
         <button onclick="googleSignIn()" id="google-sign-in">Google login</button>
 
+        <button id="sign-out" type="submit">Log Out</button>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
         <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
@@ -20,6 +22,7 @@
 <!-- <script src="auth.js"></script> -->
 
 <script>
+
 const config = {
     apiKey: "AIzaSyCX1sgdAQ0Xit_0Bc0toqTQh9Rz2SCBayc",
     authDomain: "test-9bb2d.firebaseapp.com",
@@ -32,13 +35,16 @@ const config = {
   // Initialize Firebase
   firebase.initializeApp(config);
 
-
+  let provider = new firebase.auth.GoogleAuthProvider();
 
   const auth = firebase.auth();
 
+  const signOut = $("#sign-out")
 
-  googleSignIn = () => {
+
+  let googleSignIn = () => {
       base_provider = new firebase.auth.GoogleAuthProvider()
+
       auth.signInWithPopup(base_provider).then(function (result) {
           console.log(result)
           console.log("We made it happen")
@@ -46,7 +52,23 @@ const config = {
           console.log(err)
           console.log("sorry try again")
       })
-  }</script>
+  }
+
+  signOut.on("click", e => {
+      e.preventDefault();
+      auth.signOut();
+  })
+
+  auth.onAuthStateChanged(firebaseUser => {
+      if(firebaseUser) {
+          console.log(firebaseUser);
+          signOut.show();
+      } else {
+          console.log("not logged in");
+          signOut.hide()
+      }
+   })
+  </script>
         
     </body>
 </html>
