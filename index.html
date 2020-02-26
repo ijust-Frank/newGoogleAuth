@@ -15,7 +15,7 @@
 
         <div>
             <h1>Welcome</h1>
-            <h2 id="pic-here"></h2>
+            <img id="pic-here" src="" alt="">
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -70,7 +70,7 @@ const config = {
       if(firebaseUser) {
           console.log(firebaseUser);
           signOut.show();
-          $("#pic-here").html(pic)
+          $("#pic-here"[src|=pic])
       } else {
           console.log("not logged in");
           signOut.hide()
